@@ -1,8 +1,6 @@
 # Testing data pipelines with Behaviour Driven Development (BDD)
 
-This is an example of how to build BDD tests on data pipelines.
-Although we are using pyspark in this example project, this is not a required thing.
-We could use any other library to process the data, like pandas, polars or whatever.
+This is an example of how to build BDD tests on data pipelines using scala/cucumber.
 
 ## What is BDD testing
 
@@ -14,8 +12,7 @@ all the perspectives are tied to a common shared language.
 
 [Gherkin](https://cucumber.io/docs/gherkin/reference/) is the language used by cucumber to declare tests. This language uses a minimum set of keywords
 to give the structure of the tests in an executable way.
-Cucumber, on the other hand, it's a well known testing framework in java and scala world. Although we are not using cucumber in this project, the structure
-of the Gherkin language is followed by many other libraries, like pytest-bdd(the one used in this project) and behave, for example.
+Cucumber, on the other hand, it's a well known testing framework in java and scala world.
 
 Some of basic keywords in the Gherkin language are:
 
@@ -35,7 +32,7 @@ Let's see some example of test definition:
 Looking at the example above, it is pretty clear which tests are applied and why. We have an input, an output and a context.
 There is no need to deep dive into the code to know about which scenarios are we applying in our process.
 
-Any step like **Given**, **When**, **Then** will require a background implementation in python, but as soon as it develop it once, you can reuse it to describe any other scenarios.
+Any step like **Given**, **When**, **Then** will require a background implementation in scala, but as soon as it develop it once, you can reuse it to describe any other scenarios.
 
 
 
@@ -94,21 +91,17 @@ and looking at your code you don't have any clue of why that happened. In these 
 
 ## An implementation example
 
-I will provide an example project [here](https://github.com/mflehnen/pytest-bdd-example) containing the source code of the example shown previously in this article.
+I will provide an example project [here](https://github.com/mflehnen/spark-bdd-example) containing the source code of the example shown previously in this article.
 
 This project has the two main folders:
 
 - src: contains the implementation of our data transformation functions
 - tests: contains two folders
-    - features: contains the test scenarios in Gherkin language.
-    - steps: contains the implementations of our tests in python using pybdd
+  - features: contains the test scenarios in Gherkin language.
+  - steps: contains the implementations of our tests in scala using cucumber
 
 
-
-#### Final Notes:
-if you are looking for an implementation example using the behave library, you can find one [here](https://github.com/DanteLore/bdd-pyspark)
 
 #### References:
 
 https://cucumber.io/docs/bdd/
-https://pytest-bdd.readthedocs.io/en/stable/
