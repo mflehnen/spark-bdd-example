@@ -1,22 +1,18 @@
-# Testing data pipelines with Behaviour Driven Development (BDD)
+# Testing data pipelines with Behavior Driven Development (BDD)
 
 This is an example of how to build BDD tests on data pipelines using scala/cucumber.
 
 ## What is BDD testing
 
-BDD testing is an Agile approach that promotes the collaboration in writing test cases in a simple language. Other
-approaches can lead to different perspectives to personas like the Product Owner, the Developer and the Tester. In BDD testing
-all the perspectives are tied to a common shared language.
+BDD testing is an Agile approach that promotes collaboration in writing test cases in a simple language. Other approaches can lead to different perspectives to personas like the Product Owner, the Developer and the Tester. In BDD testing all the perspectives are tied to a common shared language.
 
 ## What is Gherkin
 
-[Gherkin](https://cucumber.io/docs/gherkin/reference/) is the language used by cucumber to declare tests. This language uses a minimum set of keywords
-to give the structure of the tests in an executable way.
-Cucumber, on the other hand, it's a well known testing framework in java and scala world.
+[Gherkin](https://cucumber.io/docs/gherkin/reference/) is the language used by cucumber to declare tests. This language uses a minimum set of keywords to give the structure of the tests in an executable way. Cucumber, on the other hand, it's a well known testing framework in the Java and Scala world.
 
 Some of basic keywords in the Gherkin language are:
 
-    - Scenario: Is a concrete example of the functionality of behaviour being tested.
+    - Scenario: Is a concrete example of the functionality of behavior being tested.
     - Given: Represents a step used to provide the initial context of a testing scenario.
     - When: Represents a step used to provide a condition or action.
     - Then: Represents step used to provide the expected result
@@ -29,16 +25,15 @@ Let's see some example of test definition:
 
 <sub>Source: The author</sub>
 
-Looking at the example above, it is pretty clear which tests are applied and why. We have an input, an output and a context.
-There is no need to deep dive into the code to know about which scenarios are we applying in our process.
+Looking at the example above, it is pretty clear which tests are applied and why. We have an input, an output and a context. There is no need to deep dive into the code to know about which scenarios are we applying in our process.
 
-Any step like **Given**, **When**, **Then** will require a background implementation in scala, but as soon as it develop it once, you can reuse it to describe any other scenarios.
+Any step like **Given**, **When**, **Then** will require a background implementation in scala, but as soon as it develops it once, you can reuse it to describe any other scenarios.
 
 
 
 ## How does BDD applies to data pipelines
 
-Nowadays, we have a lot of libraries that fits really well for testing data pipelines, but, there are some edge cases
+Nowadays, we have a lot of libraries that fit really well for testing data pipelines, but, there are some edge cases
 where the usage of BDD can shine.
 Let's imagine a use case were we have some complex reverse ETL flow with many business rules. This flow uses for example,
 a datalake as an Operational Data Store (ODS) and runs a set of transformations within the datalake for feeding the resulting
@@ -49,15 +44,15 @@ data back to an application layer. That transformations executed inside the data
 - calculations relying on event occurrence
 
 That situation can lead us to an expectation that varies for each row of our dataset. The outcome of this processing heavily depends on the data relations, specific conditions for the records; like
-the current status of a customer, or a special pricing conditions for a product and so on.
+the current status of a customer, or special pricing conditions for a product and so on.
 
 Many existing libraries  used for data testing are based on setting up our final expectation about the data. In simple terms, they are
 base on unit testing concepts: you have an input and call your transformation and check if you have an output that matches your expectation.
 This is a simple and valid approach that fits very well in many cases, but it doesn't provide much context about our tests.
 
-## The 3W's of data testing
-The 3W's of data testing is a concept of this author (If you already heard about something similar, please let me know) to explain the context of our tests.
-The 3W's:
+## The 3 W's of data testing
+The 3 W's of data testing is a concept of this author (If you already heard about something similar, please let me know) to explain the context of our tests.
+The 3 W's:
 - **What**: Provides the outcome that we are expecting from our data transformation. Generally it is a set of rows.
 - **When**: Provides context regarding events that may affect the expecting result.
 - **Why**: Provides the reason regarding conditions that may affect our expecting result.
@@ -77,7 +72,7 @@ and looking at your code you don't have any clue of why that happened. In these 
 
 ## Pros
 - Gherkin language is easy and kind of ubiquitous nowadays
-- It provides de 3W's of our expectation. We have a clear definition of what is being tested
+- It provides the 3W's of our expectation. We have a clear definition of what is being tested
 - The building of tests is a collaborative work
 - Code reuse. The steps implementation can be reused by different test scenarios
 - Low friction between technical and non-technical teams because the test definition and implementations are tied
@@ -85,8 +80,8 @@ and looking at your code you don't have any clue of why that happened. In these 
 
 ## Cons
 - It is not the best option for all the tasks (I pretend to explore the gaps in a next article).
-- It could be expensive depending on how the tests are declared especially depending on how much data are we using in our mocks. And sometimes an effort on rewriting the Gherkin may be required in order to optimize tests execution.
-- Keeping the feature files updated could be though if you have a lot of system rules that are constantly changing.
+- It could be expensive depending on how the tests are declared, especially depending on how much data we are using in our mocks. And sometimes an effort on rewriting the Gherkin may be required in order to optimize test execution.
+- Keeping the feature files updated could be tough if you have a lot of system rules that are constantly changing.
 
 
 ## An implementation example
